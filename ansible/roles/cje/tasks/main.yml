@@ -7,7 +7,7 @@
 - name: Container is running
   docker:
     name: jenkins
-    image: cloudbees/jenkins-enterprise
+    image: cloudbees/jenkins-enterprise:1.651.3.1
     ports: "8080:8080"
     volumes:
       - /mnt/jenkins:/var/jenkins_home
