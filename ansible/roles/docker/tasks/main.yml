@@ -1,12 +1,19 @@
+
+- stat: path=/var/lib/docker
+  register: docker_data_orig
+
 - name: Create docker data directory
+  when: not docker_data_orig.stat.isdir
   file:
     path: /mnt/data/docker
     owner: root
     group: root
     state: directory
     mode: 0700
+    recurse: true # /mnt/data may not exists
 
 - name: Store docker files in data disk
+  when: not docker_data_orig.stat.isdir
   file:
     src: /mnt/data/docker
     dest: /var/lib/docker
