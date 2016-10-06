@@ -53,6 +53,7 @@
       - device_name: /dev/sda1
         volume_type: gp2
         volume_size: "{{ volume_size }}"
+        delete_on_termination: true
     wait: true
     exact_count: "{{ instances }}"
     count_tag:
