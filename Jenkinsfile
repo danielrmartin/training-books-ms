@@ -7,7 +7,7 @@ def registry = "docker-registry:5000"
 stages{
     stage('checkout'){
         steps{
-            git branch 'pipeline',url "https://github.com/cloudbees/${serviceName}.git"
+            git branch: 'pipeline',url: "https://github.com/cloudbees/${serviceName}.git"
         }
     }
     stage('pre-deployment')
