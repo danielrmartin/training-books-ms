@@ -1,4 +1,4 @@
-def serviceName = "training-books-ms-test"
+def serviceName = "training-books-ms"
 def registry = "docker-registry:5000"
 
 
