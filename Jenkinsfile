@@ -6,7 +6,10 @@ def registry = "docker-registry:5000"
 }
 stages{
     stage('checkout'){
-        steps{ git "https://github.com/cloudbees/${serviceName}.git"} }
+        steps{
+            git branch: 'pipeline',url: "https://github.com/cloudbees/${serviceName}.git"
+        }
+    }
     stage('pre-deployment')
     {
         steps{script{ common.runPreDeploymentTests(serviceName, registry)}}
