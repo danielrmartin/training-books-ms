@@ -10,16 +10,13 @@ pipeline{
         agent{ docker {
       image 'golang'
       label 'docker'
-      args  '-u 0:0'
-    }}
+      args  '-u 0:0' }}
   steps{
       sh 'ln -s $PWD /go/src/docker-flow'
       sh 'cd /go/src/docker-flow && go get -t && go test --cover -v'
       sh 'cd /go/src/docker-flow && go build -v -o docker-flow-proxy'
      }
-   }
-   // }
-
+     }
     stage ('build'){
        agent {label 'docker'}
        steps{
@@ -31,8 +28,7 @@ pipeline{
 
    stage ('deployment checkpoint'){
        agent none
-       steps{
-           checkpoint ('deploy')
+       steps{ checkpoint ('deploy')
        }
    }
 
