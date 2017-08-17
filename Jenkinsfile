@@ -12,24 +12,16 @@ stages{
     }
     stage('pre-deployment')
     {
-        steps{script{
-    common.runPreDeploymentTests(serviceName, registry)
-        }}
+        steps{script{ common.runPreDeploymentTests(serviceName, registry)}}
     }
     stage('build'){
-        steps{script{
-            common.build(serviceName, registry)
-        }}
+        steps{script{common.build(serviceName, registry)}}
     }
     stage('deploy') {
-        steps{script{
-    common.deploy(serviceName, registry)
-        }}
+        steps{script{common.deploy(serviceName, registry)}}
     }
     stage('post-deployment test'){
-        steps{script{
-            common.runPostDeploymentTests(serviceName, registry, "http://172.17.0.1:8081")
-        }}
+        steps{script{common.runPostDeploymentTests(serviceName, registry, "http://172.17.0.1:8081") }}
     }
 }
 }
