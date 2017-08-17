@@ -1,5 +1,5 @@
 def serviceName = "training-books-ms"
-def registry = "localhost:5000"
+def registry = "docker-registry:5000"
 
 
 node("docker") {
