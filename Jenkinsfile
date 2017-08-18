@@ -24,4 +24,8 @@ stages{
         steps{script{common.runPostDeploymentTests(serviceName, registry) }}
     }
 }
+    post{
+        always{cleanWs()
+        }
+    }
 }
