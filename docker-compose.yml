@@ -13,7 +13,7 @@ services:
     image: mongo:3
 
   tests:
-    image: ${DOCKER_REGISTRY}/training-books-ms-tests
+    image: ${registry}/training-books-ms-tests
     volumes:
       - ./client/components:/source/client/components
       - ./client/test:/source/client/test
@@ -25,9 +25,9 @@ services:
       - TEST_TYPE=all
 
   integ:
-    image: ${DOCKER_REGISTRY}/training-books-ms-tests
+    image: ${registry}/training-books-ms-tests
     volumes:
       - ./src:/source/src
     environment:
       - TEST_TYPE=integ
-      - DOMAIN=${DOMAIN}
+      - DOMAIN=${domain}
