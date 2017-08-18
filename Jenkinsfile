@@ -1,15 +1,27 @@
+pipeline{
+    agent {label 'docker'}
+    environment{
 def serviceName = "training-books-ms"
-def registry = "docker-registry:5000"
-//def flow
-
-node("docker") {
-    git "https://github.com/cloudbees/${serviceName}.git"
-//    flow = load "/mnt/scripts/pipeline-common.groovy"
-    common.runPreDeploymentTests(serviceName, registry)
-    common.build(serviceName, registry)
+def registry = "docker-registry:5000"     
 }
-checkpoint "deploy"
-node("docker") {
-    common.deploy(serviceName, registry)
-    common.runPostDeploymentTests(serviceName, registry, "http://[IP]:8081")
+stages{
+    stage('checkout'){
+        steps{
+            git branch: 'pipeline',url: "https://github.com/cloudbees/${serviceName}.git"
+        }
+    }
+    stage('pre-deployment')
+    {
+        steps{script{ common.runPreDeploymentTests(serviceName, registry)}}
+    }
+    stage('build'){
+        steps{script{common.build(serviceName, registry)}}
+    }
+    stage('deploy') {
+        steps{script{common.deploy(serviceName, registry)}}
+    }
+    stage('post-deployment test'){
+        steps{script{common.runPostDeploymentTests(serviceName, registry) }}
+    }
+}
 }
