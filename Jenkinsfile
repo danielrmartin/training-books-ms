@@ -2,7 +2,7 @@ pipeline{
     agent {label 'docker'}
     environment{
 def serviceName = "training-books-ms"
-def registry = "docker-registry:5000"
+def registry = "docker-registry:5000"     
 }
 stages{
     stage('pre-deployment')
