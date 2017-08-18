@@ -2,7 +2,7 @@ pipeline{
     agent {label 'docker'}
     environment{
 def serviceName = "training-books-ms"
-def registry = "docker-registry:5000"
+def registry = "docker-registry:5000"     
 }
 stages{
     stage('checkout'){
@@ -21,7 +21,7 @@ stages{
         steps{script{common.deploy(serviceName, registry)}}
     }
     stage('post-deployment test'){
-        steps{script{common.runPostDeploymentTests(serviceName, registry, "http://172.17.0.1:8081") }}
+        steps{script{common.runPostDeploymentTests(serviceName, registry) }}
     }
 }
 }
