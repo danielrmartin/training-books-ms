@@ -16,7 +16,7 @@ stages{
         steps{script{common.deploy(serviceName, registry)}}
     }
     stage('post-deployment test'){
-        steps{script{common.runPostDeploymentTests(serviceName, registry, "http://172.17.0.1:8081") }}
+        steps{script{common.runPostDeploymentTests(serviceName, registry) }}
     }
 }
 }
