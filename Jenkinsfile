@@ -12,7 +12,7 @@ def registry = "docker-registry:5000"
         stage('build'){
             steps{script{common.build(serviceName, registry)}}
         }
-    }
+    
     stage( "Deploy")
     {
         steps{script{common.deploy(serviceName, registry)}}
@@ -21,4 +21,5 @@ def registry = "docker-registry:5000"
     {
         steps{script{common.runPostDeploymentTests(serviceName, registry)}}
     }
+}
 }
