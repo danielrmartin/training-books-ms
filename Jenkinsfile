@@ -7,10 +7,10 @@ def registry = "docker-registry:5000"
     stages{
         stage("test")
         {
-            steps{scripts{common.runPreDeploymentTests(serviceName, registry)}}
+            steps{script{common.runPreDeploymentTests(serviceName, registry)}}
         }
         stage('build'){
-            steps{scripts{common.build(serviceName, registry)}}
+            steps{script{common.build(serviceName, registry)}}
         }
     }
 /*node("docker") {
