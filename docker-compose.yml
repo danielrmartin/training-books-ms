@@ -3,7 +3,7 @@ version: '3.2'
 services:
 
   app:
-    image: docker-registry:5000/training-books-ms
+    image: localhost:5000/training-books-ms
     ports:
       - 8081:8080
     links:
@@ -13,7 +13,7 @@ services:
     image: mongo:3
 
   tests:
-    image: docker-registry:5000/training-books-ms-tests
+    image: localhost:5000/training-books-ms-tests
     volumes:
       - ./client/components:/source/client/components
       - ./client/test:/source/client/test
@@ -25,9 +25,9 @@ services:
       - TEST_TYPE=all
 
   integ:
-    image: docker-registry:5000/training-books-ms-tests
+    image: localhost:5000/training-books-ms-tests
     volumes:
       - ./src:/source/src
     environment:
       - TEST_TYPE=integ
-      - DOMAIN=${domain}
+      - DOMAIN=$DOMAIN
