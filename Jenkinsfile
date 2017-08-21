@@ -23,8 +23,8 @@ stages{
 }
         steps{script{common.deploy(serviceName, registry)}}
     }
-      agent {label 'docker'}
     stage('post-deployment test'){
+      agent {label 'docker'}
         steps{script{common.runPostDeploymentTests(serviceName, registry) }}
     }
 }
