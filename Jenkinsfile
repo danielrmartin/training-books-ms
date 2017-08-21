@@ -1,14 +1,6 @@
 pipeline{
-    agent none
+    agent {label 'docker'}
     stages{
-          stage('checkout')
-                {
-                 agent {label 'docker'}
-                 steps{ 
-                     git branch: 'pipeline', url: 'http://student-1.lab-pipeline.class-dryrun.cloudbees-training.com:5000/gitserver/butler/training-books-ms.git'
-                     
-                 }
-}
            stage('test') {
         agent{ docker {
       image 'golang'
