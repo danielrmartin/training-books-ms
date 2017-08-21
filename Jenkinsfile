@@ -22,15 +22,12 @@ pipeline{
            archive 'docker-flow-proxy'
        }
    }
-
+}}
    stage ('deployment checkpoint'){
-       agent none
-       steps{
            checkpoint ('deploy')
-       }
    }
-}
-}
+
+
   stage ('deploy')
    {
        node ('production'){
