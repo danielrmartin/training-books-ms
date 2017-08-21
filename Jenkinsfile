@@ -1,4 +1,4 @@
-ipeline{
+pipeline{
     agent {label 'docker'}
     environment{
 def serviceName = "training-books-ms"
