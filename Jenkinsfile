@@ -37,19 +37,17 @@ pipeline{
            checkpoint ('deploy')
        }
    }
-
+}
+}
   stage ('deploy')
    {
        agent {label 'production'}
-       steps{
-           script{
              try{
            sh "docker rm -f docker-flow-proxy"
              }
            catch (e){}
              }
            sh "docker run -d --name docker-flow-proxy -p 9081:80 -p 9082:8080 docker-registry:5000/docker-flow-proxy"
-       }
    }
-}
-}
+
+
