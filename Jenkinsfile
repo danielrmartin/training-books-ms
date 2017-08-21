@@ -18,7 +18,6 @@ pipeline{
       sh 'cd /go/src/docker-flow && go build -v -o docker-flow-proxy'
      }
    }
-    }
 
     stage ('build'){
        agent {label 'docker'}
