@@ -1,12 +1,7 @@
 pipeline{
-    agent {label 'docker'}
+    agent none
     stages{
-    stage('checkout'){
-        steps{
-    git branch: 'pipeline', url: 'https://github.com/cloudbees/training-books-ms'
-        }}
-        
-             stage('test') {
+           stage('test') {
         agent{ docker {
       image 'golang'
       label 'docker'
