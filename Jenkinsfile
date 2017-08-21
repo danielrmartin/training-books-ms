@@ -36,7 +36,7 @@ pipeline{
        }
    }
 
-n  stage ('deploy')
+  stage ('deploy')
    {
        agent {label 'production'}
        steps{
