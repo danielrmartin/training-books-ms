@@ -5,15 +5,13 @@ pipeline{
         agent{ docker {
       image 'golang'
       label 'docker'
-      args  '-u 0:0'
-    }}
+      args  '-u 0:0' }}
   steps{
       sh 'ln -s $PWD /go/src/docker-flow'
       sh 'cd /go/src/docker-flow && go get -t && go test --cover -v'
       sh 'cd /go/src/docker-flow && go build -v -o docker-flow-proxy'
      }
-   }
-
+}
     stage ('build'){
        agent {label 'docker'}
        steps{
@@ -22,12 +20,12 @@ pipeline{
            archive 'docker-flow-proxy'
        }
    }
-}}
    stage ('deployment checkpoint'){
-           checkpoint ('deploy')
+       agent none
+       steps{ checkpoint ('deploy')
+       }
    }
-
-
+}}
   stage ('deploy')
    {
        node ('production'){
@@ -38,5 +36,4 @@ pipeline{
            sh "docker run -d --name docker-flow-proxy -p 9081:80 -p 9082:8080 docker-registry:5000/docker-flow-proxy"
    }
 }
-
 
