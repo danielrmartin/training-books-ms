@@ -36,4 +36,3 @@ pipeline{
            sh "docker run -d --name docker-flow-proxy -p 9081:80 -p 9082:8080 docker-registry:5000/docker-flow-proxy"
    }
 }
-
